@@ -103,6 +103,32 @@ class ProcessHistory extends Command
                         Delegation::create(array("blockHash" => $blockHash, "deployHash" => $hash, "method" => $method, "delegator" => $delegator, "validator" => $validator, "amount" => $amount, "deploymentDate" => substr($timestamp, 0, -6), "message" => $error_message));
                     }
                 }
+                if (isset($dataDeploy['result']['deploy']['session']["ModuleBytes"])) {
+                    $validator="";
+                    $delegator="";
+                    $amount="";
+                    $hash=$dataDeploy['result']['deploy']['hash'];
+                    $timestamp=$dataDeploy['result']['deploy']['header']['timestamp'];
+                    $method = "";
+                    foreach ($dataDeploy['result']['deploy']['session']["ModuleBytes"]['args'] as $arg) {
+                        if ($arg[0]=="action") {
+                            $method = $arg[1]["parsed"];
+                        }
+                        if ($arg[0]=="delegator") {
+                            $delegator = $arg[1]["parsed"];
+                        }
+                        if ($arg[0]=="validator") {
+                            $validator = $arg[1]["parsed"];
+                        }
+                        if ($arg[0]=="amount") {
+                            $amount=round(($arg[1]['parsed']/1000000000), 2);
+                        }
+                    }
+
+                    if ($delegator != "" && $amount != "" && $validator != "") {
+                        Delegation::create(array("blockHash" => $blockHash, "deployHash" => $hash, "method" => $method, "delegator" => $delegator, "validator" => $validator, "amount" => $amount, "deploymentDate" => substr($timestamp, 0, -6), "message" => $error_message));
+                    }
+                }
             }
             if (!DelegationRate::where(array("deployHash"=>$deployHash))->exists()) {
                 $dataDeploy = $this->sendRPCCommand("info_get_deploy", array($deployHash));//json_decode($result, true);
@@ -124,8 +150,7 @@ class ProcessHistory extends Command
                             $validator = $arg[1]["parsed"];
                         }
                     }
-
-                    if ($addDeploy && $error_message != "") {
+                    if ($addDeploy && $error_message == "") {
                         $hash=$dataDeploy['result']['deploy']['hash'];
                         $timestamp=$dataDeploy['result']['deploy']['header']['timestamp'];
                         DelegationRate::create(array("blockHash" => $blockHash, "deployHash" => $hash, "validator" => $validator, "delegationRate" => $delegationRate, "deploymentDate" => substr($timestamp, 0, -6)));
@@ -158,7 +183,7 @@ class ProcessHistory extends Command
     public function handle()
     {
         $counter=0;
-      
+
         $lastProcessedBlock = BlocksProcessed::where("blockHeight", "<>", null)->orderBy('blockHeight', 'asc')->first();
 
         // print_r($lastProcessedBlock);

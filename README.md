@@ -121,6 +121,14 @@ Retrieve all the peers informations
 ### api:GetValidators
 Retrieve the validators informations
 
+## Testing
+
+Once you have run at least each jobs one time, you can run the tests via the command line
+
+```
+php artisan test
+```
+
 ## Routes
 
 The routes where specially define for the associated application "Casper Analytics"

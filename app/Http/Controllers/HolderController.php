@@ -20,8 +20,7 @@ class HolderController extends Controller
         $priceUrl = "https://api.coingecko.com/api/v3/simple/price?ids=casper-network&vs_currencies=usd";
         $price = json_decode(file_get_contents($priceUrl), true);
 
-        $supplyUrl = env("CSPR_LIVE_API")."/supply";
-        $supply = json_decode(file_get_contents($supplyUrl), true);
+	      $supply = json_decode(file_get_contents("https://api.coingecko.com/api/v3/coins/casper-network"), true);
 
         $holders = Holder::selectRaw("IFNULL(position,999999) position,publicKey,IFNULL(staking,0) as staking, IFNULL(balance,0) as balance, (IFNULL(staking,0) + IFNULL(balance, 0)) as total")->whereRaw('LOWER(`publicKey`) like ?', ['%'.strtolower($query).'%'])->orderBy("position", "asc")->skip($betweenFrom)->take($itemsPerPage)->get();
 
@@ -35,8 +34,7 @@ class HolderController extends Controller
             $h['staking_price'] = $price['casper-network']['usd'] * $h->staking;
             $h['balance_price'] = $price['casper-network']['usd'] * $h->balance;
             $h['total_price'] = $price['casper-network']['usd'] * $h->total;
-            $h['percentage'] = (100 / $supply["data"]["total"])*$h->total;
-
+            $h['percentage'] = (100 / $supply['market_data']['total_supply'])*$h->total;
             $h['current_price'] = $price['casper-network']['usd'];
         }
         $list = array("data" => $holders, "pagination" => array("currentPage" => $page, "totalPages" => $totalPages, "totalHolders" => $totalHolders));

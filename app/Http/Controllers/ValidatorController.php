@@ -91,14 +91,11 @@ class ValidatorController extends Controller
         $out["currentPrice"] = $price['casper-network']['usd'];
         $out["currentPriceDate"] = date('d/m/Y H:i:s');
 
-        $supplyUrl = env("CSPR_LIVE_API")."/supply";
-        $supply = json_decode(file_get_contents($supplyUrl), true);
+        $supply = json_decode(file_get_contents("https://api.coingecko.com/api/v3/coins/casper-network"), true);
 
         $out["totalCsprStaked"] = $totalCsprStaked;
-        $out["totalSupply"] = $supply["data"]["total"];
-        $out["totalCirculatingSupply"] = $supply["data"]["circulating"];
-
-
+        $out["totalSupply"]  = $supply['market_data']['total_supply'];
+        $out["totalCirculatingSupply"] = $supply['market_data']['circulating_supply'];
 
         return $out;
     }
@@ -240,12 +237,11 @@ class ValidatorController extends Controller
         $out["infos"]["highestDelegations"] = $highestDelegations["publicKey"];
         $out["infos"]["highestDelegators"] = $highestDelegators["publicKey"];
 
-        $supplyUrl = env("CSPR_LIVE_API")."/supply";
-        $supply = json_decode(file_get_contents($supplyUrl), true);
+	$supply = json_decode(file_get_contents("https://api.coingecko.com/api/v3/coins/casper-network"), true);
 
         $out["infos"]["totalCsprStaked"] = $totalCsprStaked;
-        $out["infos"]["totalSupply"] = $supply["data"]["total"];
-        $out["infos"]["totalCirculatingSupply"] = $supply["data"]["circulating"];
+        $out["infos"]["totalSupply"] = $supply['market_data']['total_supply'];
+        $out["infos"]["totalCirculatingSupply"] = $supply['market_data']['circulating_supply'];
         $out["infos"]["era"] = $maxEraId;
 
         return $out;

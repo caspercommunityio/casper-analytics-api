@@ -37,7 +37,6 @@ Then specify the parameters of the Casper's blockchain :
 ```
 CASPER_CHAIN="casper"
 RPC_ENDPOINT="https://..../rpc"
-CSPR_LIVE_API="https://api.cspr.live"
 CORS_URL="https://..."
 FIREBASE_SERVER_KEY="..."
 NOTIFICATION_ICON="https://analytics.caspercommunity.io/assets/icon/favicon-32x32.png"
@@ -51,10 +50,6 @@ It can be "casper" of "casper-test" depending if you want to connect to the Main
 
 Specify an RPC endpoint to retrieve the info from the casper's blockchain.
 It should be a valid domain name otherwise you'll have CORS issues.
-
-##### CSPR_LIVE_API
-
-The API of [CSPR.live](https://cspr.live) to retrieve the actual supply of the CSPR's token
 
 ##### CORS_URL
 

@@ -147,7 +147,7 @@ class GetEraRewards extends Command
                     if ($eraExists->csprStaked !=0) {
                         $APY = (((100/$eraExists->csprStaked) * $v["rewards"]) * 12 * 365);
                     }
-                    StatsPerEra::where(array('eraId' => ($v["era"]+1),'validator' => $v["validator"]))->update(array("csprStaked"=> (isset($v["nextEraStaked"]) ? $v["nextEraStaked"] : 0), "position" => ($index+1)));
+                    StatsPerEra::where(array('eraId' => ($v["era"]+1),'validator' => $v["validator"]))->update(array("csprStaked"=> (isset($v["nextEraStaked"]) ? $v["nextEraStaked"] : 0), "position" => ($index+1),"delegators" => $v["delegators"]));
                 } else {
                     StatsPerEra::create(array("eraId" =>($v["era"]+1), "validator" => $v["validator"], "apy" => 0, "rewards" => 0, "delegators" => $v["delegators"],"csprStaked" => (isset($v["nextEraStaked"]) ? $v["nextEraStaked"] : 0),"message" => "","position" => ($index+1)));
                 }

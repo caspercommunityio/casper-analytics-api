@@ -1,28 +1,31 @@
-
 # Contributing to Casper Analytics API
+We appreciate all type of inputs. We want to make contributing to this project as easy and transparent as possible, whether it's:
 
-The following is a set of rules and guidelines for contributing to this repo. Please feel free to propose changes to this document in a pull request.
+- Reporting a bug
+- Discussing the current state of the code
+- Submitting a fix
+- Proposing new features
+- Becoming a maintainer
 
-## Submitting issues
+## We Develop with Github
+We use github to host code, to track issues and feature requests, as well as accept pull requests.
 
-### Guidelines
-* Please search the existing issues first, it's likely that your issue was already reported or even fixed.
-  - Go to the main page of the repository, click "issues" and type any word in the top search/command bar.
-  - You can also filter by appending e. g. "state:open" to the search string.
-  - More info on [search syntax within GitHub](https://help.github.com/articles/searching-issues)
+## All Code Changes Happen Through Pull Requests
+Pull requests are the best way to propose changes to the codebase. We actively welcome your pull requests:
 
-## Contributing to Casper Analytics API
+1. Fork the repo and create your branch from `master`.
+2. If you've added code that should be tested, add tests.
+3. Ensure the test suite passes.
+4. Make sure your code lints.
+5. Issue that pull request!
 
-All contributions to this repository are considered to be licensed under Apache License 2.0.
+## Report bugs using Github's issues
+We use GitHub issues to track public bugs. Report a bug by opening a new issue.
 
-Workflow for bug fixes:
-* Check open issues and unmerged pull requests to make sure the topic is not already covered elsewhere
-* Fork the repository
-* Do your changes on your fork
-* Make sure to add or update relevant test cases
-* Create a pull request, with a suitable title and description, referring to the related issue
+## Any contributions you make will be under the MIT Software License
+In short, when you submit code changes, your submissions are understood to be under the same [MIT License](http://choosealicense.com/licenses/mit/) that covers the project. Feel free to contact the maintainers if that's a concern.
 
-### Sign your work
+## Sign your work
 
 We use the Developer Certificate of Origin (DCO) as a additional safeguard
 for the Casper Analytics API project. This is a well established and widely used

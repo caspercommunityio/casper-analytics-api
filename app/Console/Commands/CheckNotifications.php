@@ -91,7 +91,7 @@ class CheckNotifications extends Command
     */
     public function validatorDown($notification)
     {
-        $lastEra = (StatsPerEra::where(array("validator" => $notification["condition"]->parameters->validator))->max("eraId")-1);
+        $lastEra = (StatsPerEra::where(array("validator" => $notification["condition"]->parameters->validator))->max("eraId")-2);
         $lastEraInfos = StatsPerEra::where(array("validator" => $notification["condition"]->parameters->validator, "eraId" => $lastEra))->first();
         $result = array(  "notificationSend" => false, "lastEra" => 0);
         if ($notification["result"] != null) {

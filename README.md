@@ -118,7 +118,7 @@ Retrieve the validators informations
 
 ## Testing
 
-Once you have run at least each jobs one time, you can run the tests via the command line
+**Once you have run at least each jobs one time**, you can run the tests via the command line
 
 ```
 php artisan test

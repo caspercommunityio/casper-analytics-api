@@ -95,7 +95,7 @@ php artisan serve
 ### api:GetBlockInfo
 Get the last blocks from the blockchain and retrieve the data
 
-### api:ProcessHistory
+### api:ProcessHistory (optional)
 Similar to the the GetBlockInfo's job, it retrieve historical data from the last block found to the block 0. It's running by block of 5000 block to not overload the server.
 
 ### api:GetEraRewards
@@ -118,7 +118,7 @@ Retrieve the validators informations
 
 ## Testing
 
-**Once you have run at least each jobs one time**, you can run the tests via the command line
+**Once you have run at least each jobs one time** (except api:ProcessHistory), you can run the tests via the command line
 
 ```
 php artisan test

@@ -42,9 +42,6 @@ jobs:
     - name: Prepare Validators
       run: |
         php artisan api:GetValidators
-    - name: Prepare Account Info
-      run: |
-        php artisan api:GetAccountInfo
     - name: Prepare Peers
       run: |
         php artisan api:GetPeers

@@ -30,11 +30,23 @@ jobs:
         cp .env.ci .env
         php artisan key:generate
         php artisan migrate
+    - name: Prepare Block Info
+      run: |
         php artisan api:GetBlockInfo
+    - name: Prepare Era Rewards
+      run: |
         php artisan api:GetEraRewards
+    - name: Prepare Account Balance
+      run: |
         php artisan api:GetAccountBalance
+    - name: Prepare Validators
+      run: |
         php artisan api:GetValidators
+    - name: Prepare Account Info
+      run: |
         php artisan api:GetAccountInfo
+    - name: Prepare Peers
+      run: |
         php artisan api:GetPeers
  
     - name: Run Testsuite

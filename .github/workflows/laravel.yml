@@ -28,8 +28,18 @@ jobs:
       run: |
         mkdir -p database
         touch database/database.sqlite
-    - name: Make Database
-      run: php artisan migrate
+    - name: Get Block Info
+      run: php artisan api:GetBlockInfo
+    - name: Get Era Rewards
+      run: php artisan api:GetEraRewards
+    - name: Get Account Balance
+      run: php artisan api:GetAccountBalance
+    - name: Get Validators
+      run: php artisan api:GetValidators    
+    - name: Get Account Info
+      run: php artisan api:GetAccountInfo    
+    - name: Get Peers
+      run: php artisan api:GetPeers    
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite

@@ -120,6 +120,8 @@ Retrieve the validators informations
 
 **Once you have run at least each jobs one time** (except api:ProcessHistory), you can run the tests via the command line
 
+See also the "actions" tab on github. The tests are running after each commit.
+
 ```
 php artisan test
 ```

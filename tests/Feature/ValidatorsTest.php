@@ -33,13 +33,15 @@ class ValidatorsTest extends TestCase
    public function testGetValidatorsJsonSuccess()
    {
        $response = $this->get('/validators');
-       $response->assertStatus(200);
+       print_r($response);
+       $response->assertStatus(200)
+                ->assertJsonPath("validators.012Bac1d0ff9240Ff0B7b06D555815640497861619Ca12583dDEf434885416E69B.publicKey","012Bac1d0ff9240Ff0B7b06D555815640497861619Ca12583dDEf434885416E69B");
    }
    public function testGetValidatorsInfoJsonSuccess()
    {
-       $response = $this->get('/validator/infos/012bac1d0ff9240ff0b7b06d555815640497861619ca12583ddef434885416e69b');
+       $response = $this->get('/validator/infos/012Bac1d0ff9240Ff0B7b06D555815640497861619Ca12583dDEf434885416E69B');
        $response->assertStatus(200)
-                ->assertJsonPath("publicKey","012bac1d0ff9240ff0b7b06d555815640497861619ca12583ddef434885416e69b");
+                ->assertJsonPath("publicKey","012Bac1d0ff9240Ff0B7b06D555815640497861619Ca12583dDEf434885416E69B");
    }
 
    public function testGetValidatorsInfoJsonError()
@@ -50,7 +52,7 @@ class ValidatorsTest extends TestCase
 
    public function testGetValidatorsChartsJsonSuccess()
    {
-       $response = $this->get('/validator/charts/012bac1d0ff9240ff0b7b06d555815640497861619ca12583ddef434885416e69b');
+       $response = $this->get('/validator/charts/012Bac1d0ff9240Ff0B7b06D555815640497861619Ca12583dDEf434885416E69B');
        $response->assertSeeText('apy',false)
                 ->assertSeeText('rewards',false)
                 ->assertSeeText('delegators',false)
@@ -87,3 +89,4 @@ class ValidatorsTest extends TestCase
    }
 
 }
+

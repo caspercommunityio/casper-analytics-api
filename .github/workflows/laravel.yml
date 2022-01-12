@@ -28,6 +28,7 @@ jobs:
       run: |
         mkdir -p database
         touch database/database.sqlite
+        php artisan migrate
     - name: Get Block Info
       run: php artisan api:GetBlockInfo
     - name: Get Era Rewards

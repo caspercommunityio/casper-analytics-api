@@ -33,14 +33,15 @@ class ValidatorsTest extends TestCase
    public function testGetValidatorsJsonSuccess()
    {
        $response = $this->get('/validators');
+       print_r($response);
        $response->assertStatus(200)
-                ->assertJsonPath("validators.012Bac1d0ff9240Ff0B7b06D555815640497861619Ca12583dDEf434885416E69B.publicKey","012Bac1d0ff9240Ff0B7b06D555815640497861619Ca12583dDEf434885416E69B");
+                ->assertJsonPath("validators.01c6d11a0fa563f8cc3ed5e967d5901c80004bdcde6250ddea18af2b4eae0a902d.publicKey","01c6d11a0fa563f8cc3ed5e967d5901c80004bdcde6250ddea18af2b4eae0a902d");
    }
    public function testGetValidatorsInfoJsonSuccess()
    {
        $response = $this->get('/validator/infos/012Bac1d0ff9240Ff0B7b06D555815640497861619Ca12583dDEf434885416E69B');
        $response->assertStatus(200)
-                ->assertJsonPath("publicKey","012Bac1d0ff9240Ff0B7b06D555815640497861619Ca12583dDEf434885416E69B");
+                ->assertJsonPath("publicKey","012bac1d0ff9240ff0b7b06d555815640497861619ca12583ddef434885416e69b");
    }
 
    public function testGetValidatorsInfoJsonError()
